@@ -1,0 +1,47 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+							 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>im.azriel.snippets</groupId>
+	<artifactId>loop-overhead-measurements</artifactId>
+	<packaging>nar</packaging>
+	<version>0.1-SNAPSHOT</version>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>com.github.maven-nar</groupId>
+				<artifactId>nar-maven-plugin</artifactId>
+				<version>3.0.0</version>
+				<extensions>true</extensions>
+				<configuration>
+					<libraries>
+						<library>
+							<type>executable</type>
+							<run>true</run>
+						</library>
+					</libraries>
+					<cpp>
+						<debug>false</debug>
+						<sourceDirectory>src/main/cpp</sourceDirectory>
+
+						<!-- [none], size, minimal, speed, full, aggressive, extreme, unsafe -->
+						<optimize>full</optimize>
+						<defines>
+							<define>VIRTUAL_FOR_TESTING=${cpp.virtual.for.testing}</define>
+						</defines>
+						<includePaths>
+							<includePath>${project.basedir}/src/main/cpp</includePath>
+						</includePaths>
+						<options>
+							<option>--std=c++0x</option>
+							<option>-g</option>
+						</options>
+					</cpp>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>
